@@ -12,20 +12,6 @@
 "min-temp"
 "max-temp"
 */
-const options = {
-  method: "GET",
-  headers: {
-    "X-RapidAPI-Key": "01614f72dbmshc03295bb172b302p1f859djsne13a660b81af",
-    "X-RapidAPI-Host": "yahoo-weather5.p.rapidapi.com",
-  },
-};
-
-// fetch('https://yahoo-weather5.p.rapidapi.com/weather?location=kolkata&format=json&u=c', options)
-// 	.then(response => response.json())
-// 	.then(response => console.log(response))
-// 	.catch(err => console.error(err));
-
-// const cityInput = document.getElementById("city-input");
 
 /**
  * Retrieve weather data from openweathermap
@@ -33,13 +19,13 @@ const options = {
  * HINT: URL should look like this:
  * https://api.openweathermap.org/data/2.5/weather?q=kolkata&appid=4f659b69081eb387321756a3c36d9853&units=metric
  */
-// const apikey = "4f659b69081eb387321756a3c36d9853";
+const apikey = "4f659b69081eb387321756a3c36d9853";
 const getWeatherData = (city) => {
   //HINT: Use template literals to create a url with input and an API key
   //CODE GOES HERE
-  const url = "https://yahoo-weather5.p.rapidapi.com/weather";
-  const fullurl = `${url}?location=${city}&format=json&u=c`;
-  const weatherPromise = fetch(fullurl, options);
+  const url = "https://api.openweathermap.org/data/2.5/weather?q";
+  const fullurl = `${url}=${city}&appid=${apikey}&units=metric`;
+  const weatherPromise = fetch(fullurl);
   return weatherPromise.then((response) => {
     return response.json();
   });
@@ -75,15 +61,14 @@ const entersearchCity = (event) => {
  */
 const showWeatherData = (weatherData) => {
   //CODE GOES HERE
-  document.getElementById("city-name").innerText = weatherData.location.city;
+  document.getElementById("city-name").innerText = weatherData.name;
   document.getElementById("weather-type").innerText =
-    weatherData.current_observation.condition.text;
-  document.getElementById("temp").innerText =
-    weatherData.current_observation.condition.temperature;
-  document.getElementById("min-temp").innerText = weatherData.forecasts[0].low;
-  document.getElementById("max-temp").innerText = weatherData.forecasts[0].high;
+    weatherData.weather[0].main;
+  document.getElementById("temp").innerText = weatherData.main.temp;
+  document.getElementById("min-temp").innerText = weatherData.main.temp_min;
+  document.getElementById("max-temp").innerText = weatherData.main.temp_max;
 };
 
 document
   .getElementById("city-input")
-  .addEventListener("keypress", entersearchCity);
+  .addEventListener("keyup", entersearchCity);
