@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <title>Weather App</title>
+</head>
+<body>
+
+  <div class="container">
+    
+    <div class="search-box">
+      <i class="fa-solid fa-location-dot" style="position: absolute;
+      color: #06283D;
+      font-size: 28px;"></i>
+      <input type="text" placeholder="Enter your location">
+      <button><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+
+    <div class="not-found">
+      <img src="image/404.png">
+      <p>Oops! Invalid Location :/</p>
+    </div>
+
+    <div class="weather-box">
+      <img src="" alt="">
+      <p class="temperature"></p>
+      <p class="description"></p>
+    </div>
+
+    <div class="weather-details">
+      
+      <div class="main">
+
+        <div class="wind-div bgcolor">
+          <span></span>
+          <img src="image/compass.png" alt="">
+        </div>
+
+        <div class="sun-div bgcolor">
+          <div class="sunrise pad">
+            <span></span>
+            <p>Sunrise</p>
+            <img src="image/sunrise.png" alt="">
+          </div> 
+          <div class="sunset pad">
+            <span></span>
+            <p>Sunset</p>
+            <img src="image/sunset.png" alt="">
+          </div>
+        </div>
+
+      </div>
+
+      <div class="others bgcolor">
+        <div class="humidity box">
+          <i class="fa-solid fa-water" id="imghumi"></i>
+          <div class="text">
+            <span></span>
+            <p>Humidity</p>
+          </div>
+        </div>
+        <hr class="line">
+        <div class="realfeel box">
+          <i class="fa-solid fa-temperature-low" id="imgtherm"></i>
+          <div class="text">
+            <span></span>
+            <p>Real Feel</p>
+          </div>
+        </div>
+        <hr class="line">
+        <div class="pressure box">
+          <i class="fa-solid fa-wind" id="imgpres"></i>
+          <div class="text">
+            <span></span>
+            <p>Pressure</p>
+          </div>
+        </div>
+        <hr class="line">
+        <div class="visibility box">
+          <i class="fa-solid fa-smog" id="imgvis"></i>
+          <div class="text">
+            <span></span>
+            <p>Visibility</p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+  </div>
+  <script src="https://kit.fontawesome.com/22af6159c9.js" crossorigin="anonymous"></script>
+  <script src="index.js"></script> 
+</body>
+</html>
