@@ -1,7 +1,7 @@
 // let unix = 1680092414;
-// let date = new Date(unix*1000);
+// let date = new Date(unix * 1000);
 
-// console.log(date);    // 2017-10-08T14:35:44.000Z
+// console.log(date); // 2017-10-08T14:35:44.000Z
 
 // output -> Wed Mar 29 2023 17:50:14 GMT+0530 (India Standard Time)
 
@@ -64,12 +64,22 @@ search.addEventListener("click", () => {
         ".weather-details .others .visibility span"
       );
 
-      const unixSunrise = json.sys.sunrise;
-      const unixSunset = json.sys.sunset;
-      const sysDate = new Date();
-      const sysUnix = sysDate.getTime();
+      const dt = parseInt(json.dt);
+      console.log("current time in IST unix", dt);
+      const timezone = parseInt(json.timezone);
+      console.log("timeDiff in unix", timezone);
+      const sysUnix = dt + 300 + timezone - 19800;
+      console.log("current local time in unix", sysUnix);
+      const localdate = new Date(sysUnix * 1000);
+      console.log("current local time", localdate);
+      const unixSunrise = parseInt(json.sys.sunrise) + timezone - 19800;
+      console.log("sunrise in local unix", unixSunrise);
+      const unixSunset = parseInt(json.sys.sunset) + timezone - 19800;
+      console.log("sunset in local unix", unixSunset);
       const sunriseDate = new Date(unixSunrise * 1000);
-      const sunrsetDate = new Date(unixSunset * 1000);
+      console.log("sunrise in local time", sunriseDate);
+      const sunsetDate = new Date(unixSunset * 1000);
+      console.log("sunset in local time", sunsetDate);
 
       getTimings = (sun) => {
         let hr = sun.getHours().toString();
@@ -132,7 +142,7 @@ search.addEventListener("click", () => {
 
       const windDir = getCardinalDirection(deg);
       const riseTime = getTimings(sunriseDate);
-      const setTime = getTimings(sunrsetDate);
+      const setTime = getTimings(sunsetDate);
 
       temperature.innerHTML = `${parseInt(json.main.temp)}°C`;
       description.innerHTML = `${json.weather[0].description}`;
